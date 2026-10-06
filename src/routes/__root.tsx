@@ -7,11 +7,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -38,9 +37,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -78,10 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bibek Kumar Jha | Java & Full-Stack Developer" },
+      { title: "BIBEK.DEV | Bibek Kumar Jha - Software Engineer" },
       { name: "description", content: "Engineering scalable backend architectures, high-performance REST APIs, and immersive full-stack web applications." },
       { name: "author", content: "Bibek Kumar Jha" },
-      { property: "og:title", content: "Bibek Kumar Jha | Java & Full-Stack Developer" },
+      { property: "og:title", content: "BIBEK.DEV | Bibek Kumar Jha - Software Engineer" },
+      { property: "og:site_name", content: "BIBEK.DEV" },
       { property: "og:description", content: "Engineering scalable backend architectures, high-performance REST APIs, and immersive full-stack web applications." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -104,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
   }),
   shellComponent: RootShell,

@@ -1,6 +1,7 @@
 import grandStayImage from "@/assets/grandstay-showcase.jpg";
 import workSphereImage from "@/assets/worksphere-showcase.jpg";
 import driveRentImage from "@/assets/driverent-showcase.jpg";
+import mediSafeImage from "@/assets/medisafe-showcase.jpg";
 
 export const siteConfig = {
   name: "Bibek Kumar Jha",
@@ -11,60 +12,75 @@ export const siteConfig = {
   email: "bibekk76@gmail.com",
   github: "https://github.com/Bibek-Jha344",
   linkedin: "",
-  portfolioUrl: "https://bibek-builds-software.lovable.app", // Or custom domain
   resumeUrl: "",
 } as const;
 
 export const navigation = [
-  { label: "Home", href: "#home" },
+  { label: "Work", href: "#projects" },
+  { label: "Systems", href: "#architecture" },
   { label: "About", href: "#about" },
-  { label: "Stack", href: "#stack" },
-  { label: "Projects", href: "#projects" },
-  { label: "Architecture", href: "#architecture" },
-  { label: "API Sandbox", href: "#api-sandbox" },
-  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
 export const skillGroups = [
   {
-    title: "Backend & Java",
+    title: "Languages",
     skills: [
-      ["Java", "Core OOP, Collections, Multithreading, Enterprise application logic."],
-      ["Spring Boot", "Microservices, Dependency Injection, production REST APIs."],
-      ["Spring Security & JWT", "Stateless token-based authentication and RBAC authorization."],
-      ["REST APIs", "Clean HTTP contracts, global exception handling, DTO mapping."],
-      ["JPA / Hibernate", "Entity relationships, caching, and ORM persistence."],
-    ],
-  },
-  {
-    title: "Frontend & UI",
-    skills: [
-      ["Next.js", "Server-side rendering, App router, and full-stack React."],
-      ["React.js", "Component lifecycles, custom hooks, and modern UI architecture."],
+      ["Java", "Core OOP, collections, multithreading, and enterprise application logic."],
       ["TypeScript", "Static type-safety, interface modeling, and safer refactoring."],
-      ["JavaScript (ES6+)", "Asynchronous programming, DOM manipulation, modern runtime."],
-      ["Tailwind CSS", "Utility-first design system and responsive dark-mode layouts."],
-      ["HTML5 / CSS3", "Semantic structure, flexbox/grid, and accessible UI."],
+      ["JavaScript (ES6+)", "Asynchronous programming, event-driven flows, and modern runtime patterns."],
+      ["SQL", "Relational modeling, joins, queries, and transactional data access."],
+      ["HTML5 / CSS3", "Semantic structure, flexbox/grid, and accessible UI design."],
     ],
   },
   {
-    title: "Databases & Caching",
+    title: "Backend",
+    skills: [
+      ["Spring Boot", "Production-ready service architecture and dependency injection patterns."],
+      ["Spring Security & JWT", "Authentication, authorization, and stateless security workflows."],
+      ["REST APIs", "Clean HTTP contracts, DTO mapping, validation, and error handling."],
+      ["JPA / Hibernate", "Entity relationships, persistence layering, and ORM design."],
+      ["System Design", "Service boundaries, scaling strategy, and reliable integration patterns."],
+    ],
+  },
+  {
+    title: "Frontend",
+    skills: [
+      ["Next.js", "Server-rendered product surfaces and modern full-stack React workflows."],
+      ["React.js", "Component architecture, hooks, state orchestration, and UI composition."],
+      ["Tailwind CSS", "Utility-first system design, responsive interfaces, and dark-mode polish."],
+      ["Accessibility", "Readable contrast, semantic structure, and inclusive interaction design."],
+      ["UI Engineering", "High-quality interaction design and product-focused interface detailing."],
+    ],
+  },
+  {
+    title: "Databases",
     skills: [
       ["PostgreSQL", "Relational schema design, indexes, and ACID transactions."],
       ["MySQL", "Relational storage, joins, and database optimization."],
-      ["Redis", "In-memory caching, distributed locks, and TTL-based holds."],
+      ["Redis", "In-memory caching, distributed locks, and TTL-based coordination."],
       ["Prisma ORM", "Type-safe migrations, queries, and relational mapping."],
+      ["Caching", "Performance tuning, hot-path reduction, and data consistency trade-offs."],
     ],
   },
   {
-    title: "DevOps & Tools",
+    title: "Tools",
     skills: [
-      ["Docker & Kubernetes", "Containerization and local microservices orchestration."],
-      ["Git & GitHub", "Branching workflows, version control, and public repo collaboration."],
-      ["Maven", "Java dependency management, lifecycle builds, and plugins."],
-      ["Postman", "API testing, collections, environment variables, mock servers."],
-      ["IntelliJ IDEA & VS Code", "Advanced Java debugging and modern full-stack IDEs."],
+      ["Docker & Kubernetes", "Containerization and service orchestration for delivery workflows."],
+      ["Git & GitHub", "Branching discipline, version control, and public repository collaboration."],
+      ["Maven", "Java dependency management, lifecycle builds, and plugin setup."],
+      ["Postman", "API testing, collections, and contract validation."],
+      ["VS Code & IntelliJ", "Modern IDE workflows for Java and full-stack development."],
+    ],
+  },
+  {
+    title: "Engineering",
+    skills: [
+      ["Concurrency", "Distributed locking, synchronization, and race-condition awareness."],
+      ["Reliability", "Fault tolerance, validation, and production-grade system hardening."],
+      ["Product Architecture", "Translating business needs into maintainable engineering decisions."],
+      ["Debugging", "Root-cause analysis, observability, and production issue diagnosis."],
+      ["Delivery", "Shipping iterative product work with clear architectural intent."],
     ],
   },
 ] as const;
@@ -83,6 +99,9 @@ export type Project = {
   architecture: readonly string[];
   challenges: string;
   learned: string;
+  problem?: string;
+  technicalImplementation?: string;
+  featured?: boolean;
 };
 
 export const projects: readonly Project[] = [
@@ -160,6 +179,36 @@ export const projects: readonly Project[] = [
       "High-traffic flash sales cause overlapping room booking requests. Engineered a Redis-based distributed lock to guarantee that only one booking transaction holds a room at any given millisecond.",
     learned:
       "Gained deep expertise in distributed concurrency, in-memory caching strategies, and designing transactional boundaries around scarce inventory.",
+  },
+  {
+    slug: "medisafe",
+    name: "MediSafe",
+    label: "Healthcare / Full-Stack Application",
+    description:
+      "A healthcare and physiotherapy support platform that guides patients from symptom assessment to specialist discovery, appointment management, and recovery tracking.",
+    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB", "JWT", "bcryptjs"],
+    features: [
+      "Role-aware patient, doctor, physiotherapist, and admin workflows",
+      "Structured symptom assessment with explainable recommendations",
+      "Doctor directory with appointment booking and cancellation",
+      "Prescription viewing and upload support",
+      "Physiotherapy exercise library and guidance",
+      "Recovery progress charts and exercise tracking",
+    ],
+    image: mediSafeImage,
+    imageAlt: "Screenshot of the live MediSafe healthcare platform homepage and recovery dashboard preview",
+    github: "https://github.com/Bibek-Jha344/Medisafe",
+    liveUrl: "https://medisafe-beryl.vercel.app/",
+    architecture: ["Responsive HTML / CSS / JavaScript", "Express REST API", "JWT Role-Aware Routes", "Explainable Rule Engine", "MongoDB Models / Demo Data"],
+    challenges:
+      "Patients need a clear path from describing symptoms to finding an appropriate specialist and managing follow-up care, without presenting automated guidance as a medical diagnosis.",
+    learned:
+      "Built transparent, rule-driven healthcare support flows and learned to keep demo data usable when a MongoDB connection is unavailable.",
+    problem:
+      "People can struggle to decide which specialist to consult and how to organize appointments and recovery guidance. MediSafe brings symptom assessment, specialist discovery, appointments, prescriptions, exercises, and progress tracking into one support workflow.",
+    technicalImplementation:
+      "A vanilla HTML, CSS, and JavaScript frontend is served by an Express backend. JWT-protected, role-aware routes connect to MongoDB-compatible models, with seeded demo data as a fallback. A deterministic recommendation service maps body area, symptom severity, duration, and mobility difficulty to specialist and exercise guidance; it is explicitly support-only, not a diagnosis.",
+    featured: true,
   },
 ] as const;
 

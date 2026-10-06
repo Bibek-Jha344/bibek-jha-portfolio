@@ -5,6 +5,7 @@ import {
   About,
   ApiPlaygroundSection,
   Contact,
+  CurrentlyBuilding,
   Footer,
   GithubSection,
   GrandStayArchitecture,
@@ -18,13 +19,14 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bibek Kumar Jha | Java & Full-Stack Developer" },
+      { title: "BIBEK.DEV | Bibek Kumar Jha - Software Engineer" },
       {
         name: "description",
         content:
           "Portfolio of Bibek Kumar Jha, a Java and full-stack developer building modern web applications with Java, Spring Boot, Next.js, PostgreSQL and Redis.",
       },
-      { property: "og:title", content: "Bibek Kumar Jha | Java & Full-Stack Developer" },
+      { property: "og:title", content: "BIBEK.DEV | Bibek Kumar Jha - Software Engineer" },
+      { property: "og:site_name", content: "BIBEK.DEV" },
       {
         property: "og:description",
         content:
@@ -50,6 +52,7 @@ function Index() {
         <Hero />
         <About />
         <Stack />
+        <CurrentlyBuilding />
         <Projects />
         <GrandStayArchitecture />
         <ApiPlaygroundSection />

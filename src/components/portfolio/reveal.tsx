@@ -7,7 +7,7 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 22 }}
+      initial={{ opacity: 1, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-70px" }}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}

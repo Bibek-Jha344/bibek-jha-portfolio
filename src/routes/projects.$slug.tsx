@@ -14,16 +14,18 @@ export const Route = createFileRoute("/projects/$slug")({
     return project;
   },
   head: ({ loaderData, params }) => {
-    const title = loaderData ? `${loaderData.name} Case Study | Bibek Kumar Jha` : "Project Not Found | Bibek Kumar Jha";
+    const title = loaderData ? `${loaderData.name} Case Study | BIBEK.DEV` : "Project Not Found | BIBEK.DEV";
     const description = loaderData?.description ?? "The requested portfolio project could not be found.";
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
+        { property: "og:site_name", content: "BIBEK.DEV" },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
       ],
       links: [{ rel: "canonical", href: `/projects/${params.slug}` }],
     };
@@ -119,6 +121,25 @@ function ProjectPage() {
             </div>
           </div>
         </section>
+
+        {project.problem || project.technicalImplementation ? (
+          <section className="section-band section-muted">
+            <div className="page-shell grid gap-12 lg:grid-cols-2">
+              {project.problem ? (
+                <div>
+                  <p className="eyebrow">Problem Solved</p>
+                  <p className="case-copy mt-4">{project.problem}</p>
+                </div>
+              ) : null}
+              {project.technicalImplementation ? (
+                <div>
+                  <p className="eyebrow">Technical Implementation</p>
+                  <p className="case-copy mt-4">{project.technicalImplementation}</p>
+                </div>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
 
         {/* System Architecture */}
         <section className="section-band section-muted">

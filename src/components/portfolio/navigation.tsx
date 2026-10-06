@@ -29,12 +29,12 @@ export function Navigation() {
           </a>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden items-center gap-1.5 lg:flex rounded-full border border-border/60 bg-card/40 px-4 py-1.5 backdrop-blur-md">
+          <div className="hidden items-center gap-1.5 lg:flex rounded-full border border-border/60 bg-card/40 px-2 py-1.5 backdrop-blur-md shadow-[0_12px_28px_rgba(2,6,23,0.25)]">
             {navigation.map((item) => (
               <a
-                className="nav-link text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+                className="nav-link text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground hover:text-foreground"
                 key={item.href}
-                href={`/${item.href}`}
+                href={item.href}
               >
                 {item.label}
               </a>
@@ -56,7 +56,7 @@ export function Navigation() {
               </kbd>
             </button>
 
-            <Button asChild variant="ghost" size="icon" className="hover:text-emerald-400 text-muted-foreground">
+            <Button asChild variant="ghost" size="icon" className="hover:text-sky-300 text-muted-foreground border border-border/60 bg-card/30">
               <a href={siteConfig.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
                 <Github className="h-4 w-4" />
               </a>
@@ -66,7 +66,7 @@ export function Navigation() {
               asChild
               variant="default"
               size="sm"
-              className="bg-emerald-500 text-emerald-950 hover:bg-emerald-400 font-semibold shadow-md shadow-emerald-500/15"
+              className="bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 hover:brightness-110 font-semibold shadow-[0_12px_26px_rgba(14,165,233,0.25)]"
             >
               <a href="#contact">Hire Me</a>
             </Button>
@@ -97,7 +97,7 @@ export function Navigation() {
                   {navigation.map((item) => (
                     <SheetClose asChild key={item.href}>
                       <a
-                        href={`/${item.href}`}
+                        href={item.href}
                         className="mobile-nav-link"
                         onClick={() => setOpen(false)}
                       >
@@ -111,6 +111,9 @@ export function Navigation() {
                     <a href={siteConfig.github} target="_blank" rel="noreferrer">
                       <Github className="h-4 w-4" /> GitHub Profile
                     </a>
+                  </Button>
+                  <Button asChild className="justify-start gap-2 bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950">
+                    <a href="#contact" onClick={() => setOpen(false)}>Hire Me</a>
                   </Button>
                   <Button
                     onClick={() => {

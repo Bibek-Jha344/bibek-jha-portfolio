@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowDown,
@@ -28,9 +28,8 @@ import { Reveal } from "./reveal";
 import { TiltCard } from "./tilt-card";
 import { SystemSimulator } from "./system-simulator";
 import { ApiSandbox } from "./api-sandbox";
+import { HeroScene } from "./hero-scene";
 import { journey, projects, siteConfig, skillGroups } from "@/data/portfolio";
-
-const HeroScene = lazy(() => import("./hero-scene").then((module) => ({ default: module.HeroScene })));
 
 function SectionHeading({
   eyebrow,
@@ -62,7 +61,7 @@ export function Hero() {
   return (
     <section id="home" className="hero-section scroll-mt-20">
       <div className="hero-grid" aria-hidden="true" />
-      <div className="page-shell relative grid min-h-[calc(100svh-5rem)] items-center gap-10 py-16 lg:grid-cols-[1.2fr_.8fr] lg:py-24">
+      <div className="page-shell relative grid min-h-[calc(100svh-5rem)] items-center gap-10 py-16 md:grid-cols-[1.08fr_.92fr] md:gap-6 md:py-12 lg:grid-cols-[1.2fr_.8fr] lg:gap-10 lg:py-24">
         <div className="relative z-10 max-w-4xl">
           <Reveal>
             <div className="status-pill">
@@ -149,19 +148,10 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* 3D Scene Viewport */}
-        <div className="hero-scene-wrap hidden lg:block">
-          <Suspense
-            fallback={
-              <div className="network-fallback">
-                <span /><span /><span /><span /><span />
-              </div>
-            }
-          >
-            <HeroScene />
-          </Suspense>
-          <div className="scene-label scene-label-top">SYSTEM / DISTRIBUTED MESH</div>
-          <div className="scene-label scene-label-bottom">DRAG TO ROTATE 3D NODES</div>
+        <div className="hero-scene-wrap">
+          <HeroScene />
+          <div className="scene-label scene-label-top">BIBEK.DEV / COMPANION UNIT 01</div>
+          <div className="scene-label scene-label-bottom">INTERACTIVE SYSTEMS ENGINEER</div>
         </div>
 
         <div className="scroll-cue">
@@ -268,7 +258,7 @@ export function Stack() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories = ["All", "Backend", "Frontend", "Database", "Tools"];
+  const categories = ["All", "Languages", "Backend", "Frontend", "Databases", "Tools", "Engineering"];
 
   const filteredGroups = skillGroups.map((group) => {
     const isCategoryMatch = activeCategory === "All" || group.title.toLowerCase() === activeCategory.toLowerCase();
@@ -358,6 +348,45 @@ export function Stack() {
   );
 }
 
+export function CurrentlyBuilding() {
+  const initiatives = [
+    {
+      title: "Distributed systems design",
+      detail: "Refining resilient API patterns, message-driven workflows, and race-condition-safe booking logic for real-world products.",
+    },
+    {
+      title: "Developer workflows",
+      detail: "Improving observability, shipping pipelines, and modern frontend/backend integration patterns for faster product iteration.",
+    },
+    {
+      title: "System reliability",
+      detail: "Deepening concurrency controls, caching strategies, and robust relational schemas for high-trust production systems.",
+    },
+  ];
+
+  return (
+    <section id="building" className="section-band section-muted scroll-mt-20">
+      <div className="page-shell">
+        <SectionHeading
+          eyebrow="03 / Currently Building"
+          title="Shipping durable backend and product systems"
+          copy="Focused on robust engineering patterns, reliable product flows, and systems that scale cleanly without sacrificing clarity."
+        />
+
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {initiatives.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.07} className="currently-card">
+              <div className="currently-card-index">0{index + 1}</div>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProjectCard({
   project,
   index,
@@ -370,7 +399,7 @@ function ProjectCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 1, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.65 }}
@@ -395,7 +424,7 @@ function ProjectCardContent({
         <div className="flex items-center justify-between">
           <p className="project-index">0{index + 1} / {project.label}</p>
           <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-emerald-400 border border-emerald-500/20">
-            Production System
+            {project.featured ? "Featured Project" : "Production System"}
           </span>
         </div>
 
@@ -432,6 +461,13 @@ function ProjectCardContent({
             <Button asChild variant="outline" className="border-border/80 bg-card/40 hover:bg-card">
               <a href={project.github} target="_blank" rel="noreferrer">
                 <Github className="h-4 w-4 mr-1.5" /> Repository
+              </a>
+            </Button>
+          ) : null}
+          {project.liveUrl ? (
+            <Button asChild variant="outline" className="border-sky-400/30 bg-sky-400/5 text-sky-200 hover:bg-sky-400/10">
+              <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                Live Demo <ExternalLink className="ml-1.5 h-4 w-4" />
               </a>
             </Button>
           ) : null}
